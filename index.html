@@ -58,7 +58,7 @@
       flex-shrink: 0;
     }
 
-    .brand img { height: 28px; width: auto; }
+    .brand img { height: 38px; width: auto; }
 
     .brand-mark {
       width: 4px;
@@ -289,7 +289,8 @@
         <ul class="qty" id="qty-list">
           <li><span>Piastrelle intere</span><strong id="q-full">—</strong></li>
           <li><span>Piastrelle tagliate</span><strong id="q-cut">—</strong></li>
-          <li><span>Totale pezzi posa</span><strong id="q-tot">—</strong></li>
+          <li><span>Pezzi in griglia</span><strong id="q-grid">—</strong></li>
+          <li><span>Totale posa (+3% mezze misure)</span><strong id="q-tot">—</strong></li>
           <li><span>Rampe (lato puzzle)</span><strong id="q-ramp">5</strong></li>
         </ul>
       </div>
@@ -514,7 +515,10 @@
 
     document.getElementById("q-full").textContent = String(nFull);
     document.getElementById("q-cut").textContent = String(nCut);
-    document.getElementById("q-tot").textContent = String(nFull + nCut);
+    const nGrid = nFull + nCut;
+    const nTot = Math.ceil(nGrid * 1.03); // +3% correzione mezze misure / scorta posa
+    document.getElementById("q-grid").textContent = String(nGrid);
+    document.getElementById("q-tot").textContent = String(nTot);
 
     // Rampe entro i 1,90 m: larghezza = bordo mattonella. Lato puzzle verso piastrella integro.
     // Sporgono solo in fuori (Z). Eventuale rifilo solo laterale sui pezzi ai muri.
